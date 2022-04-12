@@ -30,10 +30,10 @@ let SND   = \p     -> p FALSE
 -- do not modify text BEFORE this line
 --------------------------------------------------------------------------------
 
-let SKIP1 = (\f p -> ITE (FST p) (PAIR TRUE (INCR (SND p))) (PAIR TRUE (SND p))  )  -- (a)
-let DECR  = (\n f x -> SND (n (SKIP1 f) (PAIR FALSE x)) )   -- (b)
+let SKIP1 = (\f p -> ITE (FST p) (PAIR TRUE (f (SND p))) (PAIR TRUE (SND p))  ) -- (a)
+let DECR  = (\n f x -> SND (n (SKIP1 f) (PAIR FALSE x))       )     -- (b)
 let SUB   = (\a b -> b DECR a)       -- (c)
-let ISZ   = (\n -> n (AND FALSE) TRUE)    -- (d)
+let ISZ   = (\n -> n (AND FALSE) TRUE)       -- (d)
 let EQL   = (\a b -> AND (ISZ (SUB a b)) (ISZ (SUB b a)))       -- (e)
 
 --------------------------------------------------------------------------------
